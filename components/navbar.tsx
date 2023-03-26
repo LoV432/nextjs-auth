@@ -10,12 +10,16 @@ interface IronSessionDataFinal {
 	};
 }
 
-export default function Navbar() {
+export default function LoadNavbar() {
 	const fetcher = (apiURL: string) => fetch(apiURL).then((res) => res.json());
 	const { data, isLoading, error } = useSWR('/api/user', fetcher);
-	if (isLoading) return <></>;
+	if (isLoading) return <Navbar user={undefined} />;
 	if (error) return <></>;
 	const { user }: IronSessionData = data;
+	return <Navbar user={user} />;
+}
+
+function Navbar({ user }: IronSessionData) {
 	return (
 		<div className="relative flex min-h-[3rem] w-full gap-6 bg-blue-800 px-5 text-white">
 			<Link className="text-md my-auto font-semibold text-red-600 underline hover:cursor-pointer" href="/">
