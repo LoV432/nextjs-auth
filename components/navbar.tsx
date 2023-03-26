@@ -2,6 +2,7 @@ import { IronSessionData } from 'iron-session';
 import Link from 'next/link';
 import { useState } from 'react';
 import useSWR from 'swr';
+import Image from 'next/image';
 
 interface IronSessionDataFinal {
 	user: {
@@ -47,7 +48,7 @@ function LoggedIn({ user }: IronSessionDataFinal) {
 			</Link>
 			<div className="my-auto ml-auto">
 				<div onClick={() => setToggleProfile(!toggleProfile)} className="h-9 w-9 overflow-hidden rounded-full bg-green-800 hover:cursor-pointer">
-					<img src="https://avatars.dicebear.com/api/open-peeps/75370480.38706368.svg?background=%23ffffff"></img>
+					<Image src="https://avatars.dicebear.com/api/open-peeps/75370480.38706368.svg?background=%23ffffff" alt="profile pic" width={150} height={150} className="h-full w-full object-cover" />
 				</div>
 				{toggleProfile ? (
 					<>
