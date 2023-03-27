@@ -7,7 +7,7 @@ export default function Layout({ children, user }: { children: React.ReactNode; 
 	return (
 		<>
 			<CustomHead />
-			<div className="grid min-h-screen w-full grid-rows-[auto,1fr,auto]">
+			<div className="grid min-h-screen w-full grid-rows-[auto,1fr,auto] bg-zinc-800 text-white">
 				<Navbar user={user} />
 				<div>{children}</div>
 				<Footer />

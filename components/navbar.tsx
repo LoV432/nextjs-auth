@@ -22,8 +22,8 @@ export default function LoadNavbar({ user }: IronSessionData) {
 
 function Navbar({ user }: IronSessionData) {
 	return (
-		<div className="relative flex min-h-[3rem] w-full gap-6 bg-blue-800 px-5 text-white">
-			<Link className="text-md my-auto font-semibold text-red-600 underline hover:cursor-pointer" href="/">
+		<div className="relative flex min-h-[3rem] w-full items-center justify-center gap-6 bg-blue-800 px-5 text-white">
+			<Link className="font-semibold hover:cursor-pointer" href="/">
 				Home
 			</Link>
 			{!user ? <NotLoggedIn /> : <LoggedIn user={user} />}
@@ -33,7 +33,7 @@ function Navbar({ user }: IronSessionData) {
 
 function NotLoggedIn() {
 	return (
-		<Link className="text-md my-auto ml-auto font-semibold text-red-600 underline hover:cursor-pointer" href="/login">
+		<Link className="ml-auto font-semibold text-white hover:cursor-pointer" href="/login">
 			Login
 		</Link>
 	);
@@ -43,10 +43,10 @@ function LoggedIn({ user }: IronSessionDataFinal) {
 	const [toggleProfile, setToggleProfile] = useState(false);
 	return (
 		<>
-			<Link className="text-md my-auto font-semibold text-red-600 underline hover:cursor-pointer" href="/profile">
+			<Link className="font-semibold hover:cursor-pointer" href="/profile">
 				Profile
 			</Link>
-			<div className="my-auto ml-auto">
+			<div className="ml-auto">
 				<div onClick={() => setToggleProfile(!toggleProfile)} className="h-9 w-9 overflow-hidden rounded-full bg-green-800 hover:cursor-pointer">
 					<Image src="https://avatars.dicebear.com/api/open-peeps/75370480.38706368.svg?background=%23ffffff" alt="profile pic" width={150} height={150} className="h-full w-full object-cover" />
 				</div>
@@ -57,7 +57,7 @@ function LoggedIn({ user }: IronSessionDataFinal) {
 							<p className="m-3 border-b border-b-gray-300 border-opacity-40 pb-1 text-center">{user.username}</p>
 							<p className="m-3 border-b border-b-gray-300 border-opacity-40 pb-1 text-center">Membership: {user.membership}</p>
 							<div className="flex items-center">
-								<Link className="text-md w-full text-center font-semibold text-red-600 underline hover:cursor-pointer" href="/api/logout">
+								<Link className="text-md w-full text-center font-semibold text-red-600 hover:cursor-pointer" href="/api/logout">
 									Logout
 								</Link>
 							</div>
