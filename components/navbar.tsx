@@ -11,13 +11,13 @@ interface IronSessionDataFinal {
 	};
 }
 
-export default function LoadNavbar() {
+export default function LoadNavbar({ user }: IronSessionData) {
 	const fetcher = (apiURL: string) => fetch(apiURL).then((res) => res.json());
 	const { data, isLoading, error } = useSWR('/api/user', fetcher);
-	if (isLoading) return <Navbar user={undefined} />;
+	if (isLoading) return <Navbar user={user} />;
 	if (error) return <></>;
-	const { user }: IronSessionData = data;
-	return <Navbar user={user} />;
+	let swrUser: IronSessionData['user'] = data.user;
+	return <Navbar user={swrUser} />;
 }
 
 function Navbar({ user }: IronSessionData) {
