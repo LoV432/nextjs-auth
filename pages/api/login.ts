@@ -18,8 +18,8 @@ async function loginRoute(req: NextApiRequest, res: NextApiResponse) {
 			let responseJson = await response.json();
 			if (responseJson.success) {
 				req.session.user = {
-					username: responseJson.data.displayName,
-					membership: responseJson.data.membership
+					username: responseJson.username,
+					membership: responseJson.membership
 				};
 				await req.session.save();
 				return res.send({ ok: true });
