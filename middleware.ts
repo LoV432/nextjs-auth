@@ -8,12 +8,14 @@ export async function middleware(req: NextRequest) {
 	const res = NextResponse.next();
 	const session = await getIronSession(req, res, ironOptions);
 	const { user } = session;
-
-	if (user === undefined) {
+	if (user === undefined && req.nextUrl.pathname !== '/login') {
 		return NextResponse.redirect(new URL('/login', req.url));
+	}
+	if (user !== undefined && req.nextUrl.pathname === '/login') {
+		return NextResponse.redirect(new URL('/profile', req.url));
 	}
 }
 
 export const config = {
-	matcher: '/profile'
+	matcher: ['/profile', '/login']
 };
