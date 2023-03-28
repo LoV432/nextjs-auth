@@ -22,10 +22,8 @@ export default function LoadNavbar({ user }: IronSessionData) {
 
 function Navbar({ user }: IronSessionData) {
 	return (
-		<div className="relative flex min-h-[3rem] w-full items-center justify-center gap-6 bg-blue-800 px-5 text-white">
-			<Link className="font-semibold hover:cursor-pointer" href="/">
-				Home
-			</Link>
+		<div className="relative flex min-h-[3rem] w-full items-center justify-center gap-9 bg-blue-800 px-5 text-white">
+			<NavbarLink href="/">Home</NavbarLink>
 			{!user ? <NotLoggedIn /> : <LoggedIn user={user} />}
 		</div>
 	);
@@ -33,9 +31,9 @@ function Navbar({ user }: IronSessionData) {
 
 function NotLoggedIn() {
 	return (
-		<Link className="ml-auto font-semibold text-white hover:cursor-pointer" href="/login">
+		<NavbarLink styles="ml-auto" href="/login">
 			Login
-		</Link>
+		</NavbarLink>
 	);
 }
 
@@ -43,9 +41,7 @@ function LoggedIn({ user }: IronSessionDataFinal) {
 	const [toggleProfile, setToggleProfile] = useState(false);
 	return (
 		<>
-			<Link className="font-semibold hover:cursor-pointer" href="/profile">
-				Profile
-			</Link>
+			<NavbarLink href="/profile">Profile</NavbarLink>
 			<div className="ml-auto">
 				<div onClick={() => setToggleProfile(!toggleProfile)} className="h-9 w-9 overflow-hidden rounded-full bg-green-800 hover:cursor-pointer">
 					<Image src="https://avatars.dicebear.com/api/open-peeps/75370480.38706368.svg?background=%23ffffff" alt="profile pic" width={150} height={150} className="h-full w-full object-cover" />
@@ -56,10 +52,10 @@ function LoggedIn({ user }: IronSessionDataFinal) {
 						<div id="profileDropdown" className={`absolute right-1 w-56 rounded-md bg-gray-700 p-2 pb-3`}>
 							<p className="m-3 border-b border-b-gray-300 border-opacity-40 pb-1 text-center">{user.username}</p>
 							<p className="m-3 border-b border-b-gray-300 border-opacity-40 pb-1 text-center">Membership: {user.membership}</p>
-							<div className="flex items-center">
-								<Link className="text-md w-full text-center font-semibold text-red-600 hover:cursor-pointer" href="/api/logout">
+							<div className="flex">
+								<NavbarLink styles="text-center w-full" href="/api/logout">
 									Logout
-								</Link>
+								</NavbarLink>
 							</div>
 						</div>
 					</>
@@ -68,5 +64,13 @@ function LoggedIn({ user }: IronSessionDataFinal) {
 				)}
 			</div>
 		</>
+	);
+}
+
+function NavbarLink({ children, href, styles = '' }: { children: React.ReactNode; href: string; styles?: string }) {
+	return (
+		<Link className={`relative -top-[.07rem] font-semibold hover:cursor-pointer ${styles}`} href={href}>
+			{children}
+		</Link>
 	);
 }
