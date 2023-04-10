@@ -53,7 +53,7 @@ function LoggedIn({ user }: IronSessionDataFinal) {
 							<p className="m-3 border-b border-b-gray-300 border-opacity-40 pb-1 text-center">{user.username}</p>
 							<p className="m-3 border-b border-b-gray-300 border-opacity-40 pb-1 text-center">Membership: {user.membership}</p>
 							<div className="flex">
-								<NavbarLink styles="text-center w-full" href="/api/logout">
+								<NavbarLink styles="text-center w-full text-red-700" href="/api/logout">
 									Logout
 								</NavbarLink>
 							</div>
@@ -69,7 +69,7 @@ function LoggedIn({ user }: IronSessionDataFinal) {
 
 function NavbarLink({ children, href, styles = '' }: { children: React.ReactNode; href: string; styles?: string }) {
 	return (
-		<Link className={`relative -top-[.07rem] font-semibold hover:cursor-pointer ${styles}`} href={href}>
+		<Link className={`relative -top-[.07rem] font-semibold underline-offset-8 hover:cursor-pointer hover:underline ${styles}`} href={href}>
 			{children}
 		</Link>
 	);
